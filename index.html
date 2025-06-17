@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <title>Car Animation</title>
+    <style>
+          *{
+            margin: 0;
+            padding: 0;
+          }
+          .skye{
+            height: 100vh;
+            width: 100%;
+            background-image: url(background.jpg);
+            background-repeat: repeat-x ;
+            background-size: cover;
+            position: absolute;
+          }
+          body{
+            overflow: hidden;
+          }
+          
+      .track {
+  position: absolute;
+  width: 100%;
+  height: 300px; /* fixed height */
+  bottom: 0;
+  background-image: url(Track.png);
+  background-repeat: repeat-x;
+  background-size: contain;
+  background-position: bottom;
+  animation: moveTrack 6s linear infinite;
+  z-index: 0;
+}
+
+        .car {
+  position: absolute;
+  width: 400px;        /* fixed width */
+  height: 200px;       /* fixed height */
+  background-image: url(Car.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  left: 200px;         /* position from left */
+  bottom: 170px;        /* fixed from bottom */
+  animation: shake linear 0.6s infinite;
+}
+
+          .wheel {
+            position: absolute;
+            aspect-ratio: 1 / 1;
+            width: 90px;
+             height: 90px;
+           }
+
+         .wheel1 {
+          left: 51px;
+          bottom: 43px;
+
+          
+         }
+
+        .wheel2 {
+           right: 30px;
+           bottom: 43px;
+       
+          }
+
+        .wheel img {
+          width: 70%;
+         height: 70%;
+         
+         animation: wheelRotation linear.6s infinite;
+         
+         background-size: contain;
+
+         } 
+
+         @keyframes wheelRotation{
+            100%{
+                transform: rotate(360deg);
+            }
+         }
+       @keyframes moveTrack {
+  
+  100% {
+    background-position-x: -800vh; /* adjust based on your image width */
+  } }
+  @keyframes shake{
+    0%{
+        transform: translateY(-1px);
+    }
+    50%{
+        transform: translateY(1px);
+    }
+    100%{
+        transform: translateY(-1px);
+    }
+  }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+      <div class="skye">
+      <div class="tree"></div>
+    
+      <div class="track"></div>
+      <div class="car">
+        <div class="wheel wheel1">
+         <img src="Left tyre.png" alt="">
+        </div>
+        <div class="wheel wheel2">
+         <img src="Right tyre.png" alt="">
+        </div>
+      </div>
+      </div>
+   <div style="position: absolute; top: 20px; left: 20px; z-index: 10;">
+  <button onclick="audio.play()" style="font-size: 24px;"><i class="fas fa-play"></i></button>
+  <button onclick="audio.pause()" style="font-size: 24px;"><i class="fas fa-pause"></i></button>
+</div>
+<div style="position: absolute; top: 20px; left: 100px; z-index: 10;">
+  <button onclick="audio.volume = Math.max(0, audio.volume - 0.1)">🔉</button>
+  <button onclick="audio.volume = Math.min(1, audio.volume + 0.1)">🔊</button>
+</div>
+
+
+    <script>
+         const audio = new Audio('sound.mp3');
+  audio.loop = true;
+  audio.play();
+  audio.volume = 0.1; // 50% volume
+
+    </script>
+</body>
+</html>
